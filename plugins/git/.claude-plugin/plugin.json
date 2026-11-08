@@ -1,0 +1,7 @@
+{
+  "name": "git",
+  "description": "Git workflows: rebase a branch onto its base, resolve conflicts, and align the branch with incoming changes",
+  "author": {
+    "name": "oskarrn93"
+  }
+}
