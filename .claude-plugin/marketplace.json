@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "golang",
-      "description": "Go tooling: format edited Go files and run golangci-lint before Claude stops",
+      "description": "Go tooling: format edited Go files, run golangci-lint before Claude stops, and review Go code for best practices and over-engineering",
       "source": "./plugins/golang"
     },
     {
