@@ -18,7 +18,7 @@
     },
     {
       "name": "git",
-      "description": "Git workflows: rebase a branch onto its base and align it with incoming changes, and create pull requests that explain product and business outcomes",
+      "description": "Git workflows: rebase a branch onto its base and align it with incoming changes, create pull requests that explain product and business outcomes, and write conventional commits and PR titles that drive semver releases",
       "source": "./plugins/git"
     },
     {
