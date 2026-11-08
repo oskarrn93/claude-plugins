@@ -12,6 +12,11 @@
       "source": "./plugins/golang"
     },
     {
+      "name": "typescript",
+      "description": "TypeScript tooling: review TypeScript code for best practices and over-engineering",
+      "source": "./plugins/typescript"
+    },
+    {
       "name": "git",
       "description": "Git workflows: rebase a branch onto its base, resolve conflicts, and align the branch with incoming changes",
       "source": "./plugins/git"
