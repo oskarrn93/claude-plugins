@@ -44,7 +44,7 @@ If the themes turn out to be unrelated, mention to the user that the PR might be
 
 **Title:** state the outcome in under about 70 characters, following the commit style in `git log <remote>/<base>` if it has one (for example `feat: let customers pay by invoice`). The branch's own commits may be work in progress, and on squash-merging repositories the title often becomes the commit subject on the base.
 
-A type prefix still names the kind of change, so a refactor stays `refactor:` even when its outcome is faster releases. With several outcomes, name what they share or the most important one, rather than joining them with "and". On an existing PR, keep a title that already states the outcome, since someone may have chosen it deliberately, and replace one that doesn't.
+If the `conventional-commit` skill is available, follow it for the prefix, because the squash commit subject can drive automated releases. A type prefix still names the kind of change, so a refactor stays `refactor:` even when its outcome is faster releases. With several outcomes, name what they share or the most important one, rather than joining them with "and". On an existing PR, keep a title that already states the outcome, since someone may have chosen it deliberately, and replace one that doesn't.
 
 **Description:** if the repository has a PR template (`.github/PULL_REQUEST_TEMPLATE.md` or similar), fill in its headings with the same perspective. Otherwise use:
 
