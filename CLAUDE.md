@@ -17,6 +17,8 @@ Run this after any change to a manifest or plugin component.
 - `.claude-plugin/marketplace.json` is the registry. A plugin under `plugins/<plugin>/` can't be installed until it has an entry here with `source: ./plugins/<plugin>`. `gh-stack` is the exception: its entry points at the upstream `github/gh-stack` repo with `strict: false`, because that repo ships the skill but no plugin manifest.
 - Each plugin has its own `plugins/<plugin>/.claude-plugin/plugin.json`, with components (`skills/`, `commands/`, `agents/`, `hooks/`) alongside `.claude-plugin/`.
 - A plugin's `name` and `description` appear in both `marketplace.json` and its `plugin.json`, so change them together. Users install with `/plugin install <plugin>@oskarrn93-plugins`, so renaming a plugin changes its install command.
+- `shared/` holds content used by more than one plugin. Plugins install separately, so a skill can't reach it with `../`. Symlink it into the plugin instead: installing from the marketplace replaces the link with a copy of the file.
+- `shared/review/workflow.md` is the single source of truth for language-independent review process and best practices. Each `plugins/<language>/skills/review/references/review-workflow.md` is a symlink to it, and each language's `SKILL.md` adds only language-specific content under the same headings. Put a check in the shared file if it applies to every language.
 
 ## Hooks
 
