@@ -20,6 +20,8 @@ Then find the remote (usually `origin`) and run `git fetch <remote> --prune`. Ev
 
 Record the branch's current SHA with `git rev-parse HEAD`. It's the recovery point for the final report.
 
+Run `gh stack view --json` on its own, without a pipe, so its exit code is visible. Exit 0 means the branch is part of a stack, so also follow "Stacked branches" at the end of this skill. Exit 2, or an error because the extension isn't installed, means it's an ordinary branch. For any other exit code, report it and stop, because the branch might still be in a stack.
+
 ## 2. Determine the base
 
 If the user named a base, use it without asking.
@@ -108,3 +110,20 @@ A rebased branch needs a force-push, which rewrites the remote's history, so it'
 If they choose to push, run `git push --force-with-lease <remote> <branch>`, adding `-u` if the branch has no upstream. `--force-with-lease` refuses to overwrite commits the local clone hasn't seen. If it's rejected, someone else pushed to the branch, so report that and stop rather than falling back to `--force`.
 
 If they choose to stop, end without running anything else.
+
+## Stacked branches
+
+A plain `git rebase` of one layer leaves every layer above it based on commits that no longer exist, so the whole stack has to move together. `gh stack` does that part, and this skill still does the survey, conflict resolution, alignment and verification.
+
+Invoke the `gh-stack` skill if it's available (it may be listed as `gh-stack:gh-stack`), since it has the current command details and recovery paths. If it isn't, the commands below are enough for this workflow.
+
+The numbered steps apply with these changes:
+
+- **Base (step 2):** use `trunk` from `gh stack view --json` and skip the confirmation, because the stack already records it. If the user named a different base, stop and ask, since that means restructuring the stack rather than rebasing it.
+- **Recovery point (step 1):** record the SHA of every layer, not only the current one.
+- **Survey (step 3):** run it from the top of the stack so the commits to replay cover every layer. Commits from a squash-merged layer are expected here and aren't a reason to stop, because `gh stack rebase` skips them.
+- **Rebase (step 4):** run `gh stack rebase` instead of `git rebase`. Exit 3 means a conflict: resolve it as in step 4, `git add` the files, then run `gh stack rebase --continue`, repeating for each layer that conflicts. Use `gh stack rebase --abort` where step 4 says to abort, which restores every layer. Avoid `gh stack sync`, because it pushes, and pushing is the user's decision in step 8.
+- **Alignment (step 5):** fix each problem in the layer that introduced the code, so that each PR stays correct on its own. Use `gh stack checkout <branch>`, commit there, run `gh stack rebase --upstack`, and return with `gh stack top`. Only layers that needed changes get an alignment commit.
+- **Verification (step 6):** verify every layer, because each one becomes its own PR. Check out each with `gh stack checkout <branch>`, bottom to top.
+- **Report (step 7):** list conflicts and alignment per layer, and give the undo as one `git branch -f <branch> <original SHA>` per layer, or `git reset --hard <original SHA>` for the checked-out one.
+- **Push (step 8):** offer `gh stack push` instead of `git push`. It uses `--force-with-lease` per branch and updates all layers atomically. If it's rejected, report that and stop.
