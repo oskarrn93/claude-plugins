@@ -5,7 +5,7 @@ Personal [Claude Code](https://code.claude.com) plugin marketplace.
 ## Install
 
 ```
-/plugin marketplace add oskarrn93/claude-plugins
+/plugin marketplace add https://github.com/oskarrn93/claude-plugins.git
 /plugin install <plugin>@oskarrn93-plugins
 ```
 
