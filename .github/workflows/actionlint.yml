@@ -1,0 +1,13 @@
+name: Actionlint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  actionlint:
+    uses: oskarrn93/github-actions/.github/workflows/actionlint.yml@cf66633427573d9d5b3a1e0969f3d0575fdd681f # v1
