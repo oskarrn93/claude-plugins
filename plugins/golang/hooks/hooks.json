@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -e '.stop_hook_active == true' >/dev/null && exit 0; [ -n \"$(git -C \"$CLAUDE_PROJECT_DIR\" status --porcelain -- '*.go')\" ] || exit 0; out=$(cd \"$CLAUDE_PROJECT_DIR\" && golangci-lint run ./... 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; }",
+            "command": "jq -e '.stop_hook_active == true' >/dev/null && exit 0; command -v golangci-lint >/dev/null || exit 0; [ -n \"$(git -C \"$CLAUDE_PROJECT_DIR\" status --porcelain -- '*.go')\" ] || exit 0; out=$(cd \"$CLAUDE_PROJECT_DIR\" && golangci-lint run ./... 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; }",
             "timeout": 300,
             "statusMessage": "Running golangci-lint"
           }

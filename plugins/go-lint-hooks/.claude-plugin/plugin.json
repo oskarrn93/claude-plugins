@@ -1,7 +1,0 @@
-{
-  "name": "go-lint-hooks",
-  "description": "Format edited Go files and run golangci-lint before Claude stops",
-  "author": {
-    "name": "oskarrn93"
-  }
-}
