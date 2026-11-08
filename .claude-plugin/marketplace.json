@@ -15,6 +15,15 @@
       "name": "git",
       "description": "Git workflows: rebase a branch onto its base, resolve conflicts, and align the branch with incoming changes",
       "source": "./plugins/git"
+    },
+    {
+      "name": "gh-stack",
+      "description": "Stacked PRs with the gh stack CLI: GitHub's official skill for creating, syncing, rebasing, submitting and merging stacks of branches",
+      "source": {
+        "source": "github",
+        "repo": "github/gh-stack"
+      },
+      "strict": false
     }
   ]
 }
