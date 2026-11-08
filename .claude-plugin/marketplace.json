@@ -10,6 +10,11 @@
       "name": "golang",
       "description": "Go tooling: format edited Go files and run golangci-lint before Claude stops",
       "source": "./plugins/golang"
+    },
+    {
+      "name": "git",
+      "description": "Git workflows: rebase a branch onto its base, resolve conflicts, and align the branch with incoming changes",
+      "source": "./plugins/git"
     }
   ]
 }
