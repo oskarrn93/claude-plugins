@@ -1,0 +1,7 @@
+{
+  "name": "golang",
+  "description": "Go tooling: format edited Go files and run golangci-lint before Claude stops",
+  "author": {
+    "name": "oskarrn93"
+  }
+}
