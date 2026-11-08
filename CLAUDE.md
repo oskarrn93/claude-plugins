@@ -12,6 +12,16 @@ claude plugin validate .
 
 Run this after any change to a manifest or plugin component.
 
+```
+scripts/check-plugin-versions.sh origin/main
+```
+
+CI runs this on pull requests. It compares commits, so commit before running it locally.
+
+## Versioning
+
+Bump `version` in `plugins/<plugin>/.claude-plugin/plugin.json` whenever anything in that plugin changes, using semver. Consumers stay on their cached copy until the version changes, however many commits land. A change under `shared/` needs a bump in every plugin that symlinks the changed file. Set `version` only in `plugin.json`, not in `marketplace.json`. `gh-stack` is upstream and has no version here. The `plugin-version-bump` project skill works out which plugins need a bump and at what level.
+
 ## Structure
 
 - `.claude-plugin/marketplace.json` is the registry. A plugin under `plugins/<plugin>/` can't be installed until it has an entry here with `source: ./plugins/<plugin>`. `gh-stack` is the exception: its entry points at the upstream `github/gh-stack` repo with `strict: false`, because that repo ships the skill but no plugin manifest.

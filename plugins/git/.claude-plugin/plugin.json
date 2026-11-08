@@ -1,5 +1,6 @@
 {
   "name": "git",
+  "version": "1.0.0",
   "description": "Git workflows: rebase a branch onto its base and align it with incoming changes, and create pull requests that explain product and business outcomes",
   "author": {
     "name": "oskarrn93"

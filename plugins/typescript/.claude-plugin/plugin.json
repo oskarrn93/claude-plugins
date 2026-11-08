@@ -1,5 +1,6 @@
 {
   "name": "typescript",
+  "version": "1.0.0",
   "description": "TypeScript tooling: review TypeScript code for best practices and over-engineering",
   "author": {
     "name": "oskarrn93"
