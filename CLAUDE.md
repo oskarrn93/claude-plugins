@@ -14,7 +14,7 @@ Run this after any change to a manifest or plugin component.
 
 ## Structure
 
-- `.claude-plugin/marketplace.json` is the registry. A plugin under `plugins/<plugin>/` can't be installed until it has an entry here with `source: ./plugins/<plugin>`.
+- `.claude-plugin/marketplace.json` is the registry. A plugin under `plugins/<plugin>/` can't be installed until it has an entry here with `source: ./plugins/<plugin>`. `gh-stack` is the exception: its entry points at the upstream `github/gh-stack` repo with `strict: false`, because that repo ships the skill but no plugin manifest.
 - Each plugin has its own `plugins/<plugin>/.claude-plugin/plugin.json`, with components (`skills/`, `commands/`, `agents/`, `hooks/`) alongside `.claude-plugin/`.
 - A plugin's `name` and `description` appear in both `marketplace.json` and its `plugin.json`, so change them together. Users install with `/plugin install <plugin>@oskarrn93-plugins`, so renaming a plugin changes its install command.
 
