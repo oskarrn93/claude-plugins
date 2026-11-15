@@ -10,4 +10,4 @@ permissions:
 
 jobs:
   actionlint:
-    uses: oskarrn93/github-actions/.github/workflows/actionlint.yml@cf66633427573d9d5b3a1e0969f3d0575fdd681f # v1
+    uses: oskarrn93/github-actions/.github/workflows/actionlint.yml@da698a589fd694fa38175bc7af7404b4a509faab # v1
